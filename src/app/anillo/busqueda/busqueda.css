@@ -1,0 +1,10 @@
+div.busqueda {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+
+div.busqueda p-floatlabel {
+    margin-bottom: 20px;
+}
