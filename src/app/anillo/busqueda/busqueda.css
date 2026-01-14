@@ -5,6 +5,6 @@ div.busqueda {
     padding: 15px;
 }
 
-div.busqueda p-floatlabel {
+div.busqueda p-floatlabel, p-select {
     margin-bottom: 20px;
 }

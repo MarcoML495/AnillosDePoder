@@ -10,12 +10,13 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
+import { RouterLink } from "@angular/router";
 
 
 
 @Component({
   selector: 'app-busqueda',
-  imports: [InputTextModule,FloatLabelModule,SelectModule,FormsModule,ButtonModule,CommonModule,TableModule],
+  imports: [InputTextModule, FloatLabelModule, SelectModule, FormsModule, ButtonModule, CommonModule, TableModule, RouterLink],
   templateUrl: './busqueda.html',
   styleUrl: './busqueda.css',
 })
@@ -39,7 +40,7 @@ export class Busqueda {
     this.anillosFiltrados = this.anillo.anillos.filter(a =>
       a.nombre.toLowerCase().includes(n) ||
       a.portador.toLowerCase().includes(p) ||
-      a.raza.toLowerCase().includes(n)
+      a.raza.toLowerCase().includes(r)
     );
 
   }

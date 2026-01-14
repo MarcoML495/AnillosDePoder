@@ -2,7 +2,7 @@ export interface Anillo {
 
   nombre: string;
   portador: string;
-  raza: 'Elfo' | 'Enano' | 'Humano' | 'Maiar' | 'Oscuro';
+  raza: string;
   poder: string;
   corrupcion: number;
  
