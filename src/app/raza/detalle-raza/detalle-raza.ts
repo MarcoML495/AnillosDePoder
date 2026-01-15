@@ -46,7 +46,7 @@ export class DetalleRaza {
   })
 
   enviar(){
-    alert
+    alert("raza creada")
   }
  }
 

@@ -43,7 +43,7 @@ export class CrearAnillo {
   })
 
   enviar() {
-    alert
+    alert("anillo creado")
   }
 }
 
