@@ -5,11 +5,13 @@ import { TextareaModule } from 'primeng/textarea';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
+import { SliderModule } from 'primeng/slider';
 import { Razas } from '../../clases/razas';
 import { Raza } from '../../interfaces/raza';
+import { Badge } from "primeng/badge";
 @Component({
   selector: 'app-crear-anillo',
-  imports: [ReactiveFormsModule, SelectModule, InputTextModule, TextareaModule, SelectButtonModule, ButtonModule],
+  imports: [ReactiveFormsModule, SelectModule, InputTextModule, TextareaModule, SelectButtonModule, ButtonModule, SliderModule, Badge],
   templateUrl: './crear-anillo.html',
   styleUrl: './crear-anillo.css',
 })

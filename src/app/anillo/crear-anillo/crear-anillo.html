@@ -39,10 +39,10 @@
   </div>
 
   
-  <div>
+  <div class="corrupcion">
     <label>Corrupción</label>
-    <input  pInputText type="number" formControlName="corrupcion" min="0" max="100">
-
+    <p-slider formControlName="corrupcion" class="w-full" />
+    <p-badge [value]="this.formulario.value.corrupcion">0</p-badge>
     @if (formulario.get('corrupcion')?.invalid && formulario.get('corrupcion')?.touched) {
       <small>L corrupcion debe tener un valor entre 0 y 100</small>
     }
