@@ -1,0 +1,50 @@
+<div class="barraBusqueda">
+    <div class="acciones">
+        <table>
+            <tr>
+                <td><button routerLink="/buscarraza" id="buscarRaza">Buscar Raza</button></td>
+                <td><button routerLink="/raza" id="crearRaza">Crear Raza</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="busqueda">
+    <p-floatlabel variant="on">
+        <input pInputText id="busqueda_nombre" [(ngModel)]="busquedaNombre" autocomplete="off" />
+        <label for="on_label">Nombre</label>
+    </p-floatlabel>
+    <!-- <p-floatlabel variant="on">
+        <input pInputText id="busqueda_portador" [(ngModel)]="busquedaPortador" autocomplete="off" />
+        <label for="on_label">Portador</label>
+    </p-floatlabel> -->
+    <!-- <p-select [options]="listaRazas" [(ngModel)]="busquedaRaza" optionLabel="nombre" optionValue="nombre"
+        placeholder="Selecciona una raza" class="w-full md:w-56" /> -->
+    <p-button label="Buscar Raza" icon="pi pi-check" (onClick)="buscar()" severity="contrast" />
+</div>
+
+<div>
+    <p-table [value]="razasFiltradas" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template #header>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Longevidad</th>
+                <th>Region Principal</th>
+                <th>Afinidad Magica</th>
+                <th>Corrupcion</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-raza>
+            <tr>
+                <td>{{ raza.nombre }}</td>
+                <td>{{ raza.descripcion }}</td>
+                <td>{{ raza.longevidad }}</td>
+                <td>{{ raza.regionPrincipal }}</td>
+                <td>{{ raza.afinidadMagica }}</td>
+                <td>{{ raza.nivelCorrupcion }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>

@@ -1,0 +1,11 @@
+.formulario {
+    border: 2px solid black;
+    color:white;
+    background-color: #202020;
+    margin: 0 auto;
+}
+
+.botonera {
+    margin:10px;
+    text-align: center;
+}

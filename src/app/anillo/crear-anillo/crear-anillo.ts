@@ -9,9 +9,10 @@ import { SliderModule } from 'primeng/slider';
 import { Razas } from '../../clases/razas';
 import { Raza } from '../../interfaces/raza';
 import { Badge } from "primeng/badge";
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-crear-anillo',
-  imports: [ReactiveFormsModule, SelectModule, InputTextModule, TextareaModule, SelectButtonModule, ButtonModule, SliderModule, Badge],
+  imports: [ReactiveFormsModule, SelectModule, InputTextModule, TextareaModule, SelectButtonModule, ButtonModule, SliderModule, Badge, RouterLink],
   templateUrl: './crear-anillo.html',
   styleUrl: './crear-anillo.css',
 })
@@ -46,6 +47,14 @@ export class CrearAnillo {
 
   enviar() {
     alert("anillo creado")
+  }
+
+  limpiar() {
+    this.formulario.get("nombre")?.setValue("")
+    this.formulario.get("portador")?.setValue("")
+    this.formulario.get("raza")?.setValue("")
+    this.formulario.get("poder")?.setValue("")
+    this.formulario.get("corrupcion")?.setValue(50)
   }
 }
 

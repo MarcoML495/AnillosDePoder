@@ -1,55 +1,73 @@
-<form [formGroup]="formulario" (ngSubmit)="enviar()">
+    <div class="barraBusqueda">
+     <div class="acciones">
+    <table>
+        <tr>
+            <td><button id="buscarAnillo" routerLink="/buscar">Buscar Anillo</button></td>
+            <td><button id="crearAnillo" routerLink="/crear">Crear Anillo</button></td>
+        </tr>
+    </table>
+    </div>
+    </div>
+
+<div class="formulario">
+  <form [formGroup]="formulario" (ngSubmit)="enviar()">
 
 
-  <div>
-    <label>Nombre</label>
-    <input  pInputText type="text" formControlName="nombre">
+    <div>
+      <label>Nombre</label>
+      <input id="nombre" pInputText type="text" formControlName="nombre">
 
-    @if (formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched) {
+      @if (formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched) {
       <small>El nombre es obligatorio y debe tener al menos 3 caracteres</small>
-    }
-  </div>
+      }
+    </div>
 
-  
-  <div>
-    <label>Portador</label>
-    <textarea  pTextarea formControlName="portador"></textarea>
 
-    @if (formulario.get('portador')?.invalid && formulario.get('portador')?.touched) {
+    <div>
+      <label>Portador</label>
+      <textarea pTextarea formControlName="portador"></textarea>
+
+      @if (formulario.get('portador')?.invalid && formulario.get('portador')?.touched) {
       <small>El nombre del portador es obligatorio (mínimo 10 caracteres)</small>
-    }
-  </div>
+      }
+    </div>
 
-  <div>
-    <label>Raza</label>
-    <p-select [options]="listaRazas" optionLabel="nombre" optionValue="nombre" formControlName="raza"></p-select>
+    <div>
+      <label>Raza</label>
+      <p-select [options]="listaRazas" optionLabel="nombre" optionValue="nombre" formControlName="raza"></p-select>
 
-    @if (formulario.get('raza')?.invalid && formulario.get('raza')?.touched) {
+      @if (formulario.get('raza')?.invalid && formulario.get('raza')?.touched) {
       <small>La raza es obligatoria</small>
-    }
-  </div>
+      }
+    </div>
 
-  <div>
-    <label>Poder</label>
-    <input  pInputText type="text" formControlName="poder">
+    <div>
+      <label>Poder</label>
+      <input pInputText type="text" formControlName="poder">
 
-    @if (formulario.get('poder')?.invalid && formulario.get('poder')?.touched) {
+      @if (formulario.get('poder')?.invalid && formulario.get('poder')?.touched) {
       <small>El poder es obligatorio (mínimo 10 caracteres)</small>
-    }
-  </div>
+      }
+    </div>
 
-  
-  <div class="corrupcion">
-    <label>Corrupción</label>
-    <p-slider formControlName="corrupcion" class="w-full" />
-    <p-badge [value]="this.formulario.value.corrupcion">0</p-badge>
-    @if (formulario.get('corrupcion')?.invalid && formulario.get('corrupcion')?.touched) {
+
+    <div class="corrupcion">
+      <label>Corrupción</label>
+      <p-slider formControlName="corrupcion" class="w-full" />
+      <p-badge [value]="this.formulario.value.corrupcion">0</p-badge>
+      @if (formulario.get('corrupcion')?.invalid && formulario.get('corrupcion')?.touched) {
       <small>L corrupcion debe tener un valor entre 0 y 100</small>
-    }
-  </div>
-  
-  <p-button type="submit" [disabled]="formulario.invalid">
-    Guardar raza
-  </p-button>
+      }
+    </div>
 
-</form>
+    <div class="botonera">
+      <input type="button" class="p-ripple p-button p-component" value="Limpiar" (click)="limpiar()">
+
+      <p-button type="submit" [disabled]="formulario.invalid">
+        Guardar anillo
+      </p-button>
+    </div>
+
+  </form>
+
+</div>
