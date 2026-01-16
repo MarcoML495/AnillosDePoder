@@ -19,21 +19,28 @@ import { RouterLink } from "@angular/router";
   styleUrl: './busqueda-raza.css',
 })
 export class BusquedaRaza {
-  
-  regiones = ['Mordor','Rivendel','La Comarca']
   afinidades = ['Tiene', 'No tiene']
 
   raza = new Razas()
   razasFiltradas: Raza[] = this.raza.razas
 
   busquedaNombre: string = '';
+  busquedaDescripcion: string = '';
+  busquedaLongevidad: string = '';
+  busquedaRegion: string = '';
 
   buscar() {
 
     const n = this.busquedaNombre.toLowerCase();
+    const d = this.busquedaDescripcion.toLowerCase();
+    const l = this.busquedaLongevidad.toLowerCase();
+    const r = this.busquedaRegion.toLowerCase();
 
-    this.razasFiltradas = this.raza.razas.filter(a =>
-      a.nombre.toLowerCase().includes(n)
+    this.razasFiltradas = this.raza.razas.filter(raza =>
+      raza.nombre.toLowerCase().includes(n) &&
+      raza.descripcion.toLowerCase().includes(d) &&
+      raza.longevidad.toLowerCase().includes(l) &&
+      raza.regionPrincipal.toLowerCase().includes(r)
     );
 
   }

@@ -5,6 +5,23 @@ div.busqueda {
     padding: 15px;
 }
 
+.formulario {
+    border: 2px solid black;
+    color:white;
+    background-color: #202020;
+    margin: 0 auto;
+}
+
+div.corrupcion {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.botonera {
+    margin:10px;
+    text-align: center;
+}
+
 div.busqueda p-floatlabel, p-select {
     margin-bottom: 20px;
 }

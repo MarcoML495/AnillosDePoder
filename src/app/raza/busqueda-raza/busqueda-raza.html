@@ -14,12 +14,18 @@
         <input pInputText id="busqueda_nombre" [(ngModel)]="busquedaNombre" autocomplete="off" />
         <label for="on_label">Nombre</label>
     </p-floatlabel>
-    <!-- <p-floatlabel variant="on">
-        <input pInputText id="busqueda_portador" [(ngModel)]="busquedaPortador" autocomplete="off" />
-        <label for="on_label">Portador</label>
-    </p-floatlabel> -->
-    <!-- <p-select [options]="listaRazas" [(ngModel)]="busquedaRaza" optionLabel="nombre" optionValue="nombre"
-        placeholder="Selecciona una raza" class="w-full md:w-56" /> -->
+    <p-floatlabel variant="on">
+        <input pInputText id="busqueda_descripcion" [(ngModel)]="busquedaDescripcion" autocomplete="off" />
+        <label for="on_label">Descripcion</label>
+    </p-floatlabel>
+    <p-floatlabel variant="on">
+        <input pInputText id="busqueda_longevidad" [(ngModel)]="busquedaLongevidad" autocomplete="off" />
+        <label for="on_label">Longevidad</label>
+    </p-floatlabel>
+    <p-floatlabel variant="on">
+        <input pInputText id="busqueda_region" [(ngModel)]="busquedaRegion" autocomplete="off" />
+        <label for="on_label">Region</label>
+    </p-floatlabel>
     <p-button label="Buscar Raza" icon="pi pi-check" (onClick)="buscar()" severity="contrast" />
 </div>
 
