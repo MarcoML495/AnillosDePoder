@@ -11,9 +11,15 @@
       <button routerLink="/">Volver al inicio</button>
       <button routerLink="/buscarraza">Explorar Razas</button>
       <button routerLink="/detalle">Ver Anillos</button>
+      <button routerLink="/personajes">Personajes</button>
     </div>
   </div>
 </header>
+<!-- @for (item of paises; track item.name.common) {
+  <li>{{item.name.common}}</li>
+} @empty {
+    <li>No hay objetos</li>
+} -->
 
 
 <router-outlet />

@@ -4,6 +4,7 @@ import { DetalleRaza } from './raza/detalle-raza/detalle-raza';
 import { BusquedaRaza } from './raza/busqueda-raza/busqueda-raza';
 import { CrearAnillo} from './anillo/crear-anillo/crear-anillo';
 import { Busqueda } from './anillo/busqueda/busqueda';
+import { BuscarPersonaje } from './personajes/buscar-personaje/buscar-personaje';
 
 export const routes: Routes = [
     { path: 'detalle', component: Detalle },
@@ -11,4 +12,5 @@ export const routes: Routes = [
     { path: 'raza', component: DetalleRaza},
     { path: 'buscar', component: Busqueda },
     { path: 'buscarraza', component: BusquedaRaza },
+    { path: 'personajes', component: BuscarPersonaje },
 ];
