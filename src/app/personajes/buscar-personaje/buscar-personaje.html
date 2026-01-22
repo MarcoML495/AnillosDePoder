@@ -1,5 +1,32 @@
-@for (item of personajes; track item.nombre) {
-  <li>{{item.nombre}}</li>
-} @empty {
-    <li>No hay objetos</li>
-}
+<div class="barraBusqueda">
+  <div class="acciones">
+    <table>
+      <tr>
+        <td><button routerLink="/personajes">Lista Personajes</button></td>
+        <td><button routerLink="/crearpersonaje">Crear Personaje</button></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="tablaPersonajes">
+  <p-table [value]="personajes" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template #header>
+      <tr>
+        <th>Nombre</th>
+        <th>Raza</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-personaje>
+      <tr>
+        <td>{{ personaje.nombre }}</td>
+        <td>{{ personaje.raza }}</td>
+        <td>{{ personaje.fechaNacimiento }}</td>
+        <td><p-button (click)="editar(personaje)">Editar</p-button></td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

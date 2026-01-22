@@ -1,0 +1,29 @@
+.formulario {
+    border: 2px solid black;
+    color:white;
+    background-color: #202020;
+    margin: 0 auto;
+}
+
+div.corrupcion {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.botonera {
+    margin:10px;
+    text-align: center;
+}
+
+.botonera input {
+    background-color: red;
+    border-color: red;
+    margin:10px;
+}
+
+p-slider {
+    display:inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 200px;
+}

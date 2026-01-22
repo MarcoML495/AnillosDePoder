@@ -1,0 +1,57 @@
+<div class="barraBusqueda">
+  <div class="acciones">
+    <table>
+      <tr>
+        <td><button routerLink="/personajes">Lista Personajes</button></td>
+        <td><button routerLink="/crearpersonaje">Crear Personaje</button></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="formulario">
+  <form [formGroup]="formPersonaje" (ngSubmit)="enviar()">
+
+
+    <div>
+      <label>Nombre</label>
+      <input id="nombre" pInputText type="text" formControlName="nombre">
+
+      @if (formPersonaje.get('nombre')?.invalid && formPersonaje.get('nombre')?.touched) {
+      <small>El nombre es obligatorio y debe tener al menos 3 caracteres</small>
+      }
+    </div>
+
+    <div>
+      <label>Raza</label>
+      <p-select [options]="listaRazas" formControlName="raza"></p-select>
+
+      @if (formPersonaje.get('raza')?.invalid && formPersonaje.get('raza')?.touched) {
+      <small>La raza es obligatoria</small>
+      }
+    </div>
+
+    <div>
+      <label>Fecha de nacimiento</label>
+      <p-datepicker formControlName="fechaNacimiento" dateFormat="yy-mm-dd" />
+    </div>
+
+
+    <div class="corrupcion">
+      <label>Corrupción</label>
+      <p-slider formControlName="corrupcion" class="w-full" />
+      <p-badge [value]="this.formPersonaje.value.corrupcion">0</p-badge>
+      @if (formPersonaje.get('corrupcion')?.invalid && formPersonaje.get('corrupcion')?.touched) {
+      <small>L corrupcion debe tener un valor entre 0 y 100</small>
+      }
+    </div>
+
+    <div class="botonera">
+      <p-button type="submit" [disabled]="formPersonaje.invalid">
+        Guardar personaje
+      </p-button>
+    </div>
+
+  </form>
+
+</div>

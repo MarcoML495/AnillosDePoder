@@ -1,0 +1,6 @@
+.tablaPersonajes p-table {
+    border: 2px solid white;
+    border-radius: 5px;
+    width: 1000px;
+    margin: 20px auto;
+}

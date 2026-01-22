@@ -15,4 +15,10 @@ export class AnillosService {
     return this.http.get<any []>(`${this.baseUrl}/listaPersonajes`)
     
   }
+
+  getCharacter(id:string): Observable <any []> {
+
+    return this.http.get<any []>(`${this.baseUrl}/obtenerPersonaje/${id}`)
+    
+  }
 }
