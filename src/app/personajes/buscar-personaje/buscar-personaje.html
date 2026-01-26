@@ -17,6 +17,7 @@
         <th>Nombre</th>
         <th>Raza</th>
         <th>Fecha de Nacimiento</th>
+        <th>Corrupcion</th>
         <th>Acciones</th>
       </tr>
     </ng-template>
@@ -25,6 +26,7 @@
         <td>{{ personaje.nombre }}</td>
         <td>{{ personaje.raza }}</td>
         <td>{{ personaje.fechaNacimiento }}</td>
+        <td>{{ personaje.nivelCorrupcion }}</td>
         <td><p-button (click)="editar(personaje)">Editar</p-button></td>
       </tr>
     </ng-template>

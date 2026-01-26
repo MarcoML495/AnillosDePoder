@@ -11,14 +11,18 @@ export class AnillosService {
   private baseUrl = environment.anilloUrl
 
   getAllCharacters(): Observable <any []> {
-
     return this.http.get<any []>(`${this.baseUrl}/listaPersonajes`)
-    
   }
 
   getCharacter(id:string): Observable <any []> {
-
     return this.http.get<any []>(`${this.baseUrl}/obtenerPersonaje/${id}`)
-    
+  }
+
+  insertCharacter(nombre:string,raza:string,fechaNacimiento:string,nivelCorrupcion:number): Observable <any []> {
+    return this.http.post<any []>(`${this.baseUrl}/insertarPersonaje`,{"nombre": nombre, "raza": raza, "fechaNacimiento": fechaNacimiento, "nivelCorrupcion": nivelCorrupcion})
+  }
+
+  updateCharacter(id:string,nombre:string,raza:string,fechaNacimiento:string,nivelCorrupcion:number): Observable <any []> {
+    return this.http.put<any []>(`${this.baseUrl}/actualizarPersonaje/${id}`,{"nombre": nombre, "raza": raza, "fechaNacimiento": fechaNacimiento, "nivelCorrupcion": nivelCorrupcion})
   }
 }

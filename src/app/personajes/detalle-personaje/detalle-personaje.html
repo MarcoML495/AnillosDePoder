@@ -10,7 +10,7 @@
 </div>
 
 <div class="formulario">
-  <form [formGroup]="formPersonaje" (ngSubmit)="enviar()">
+  <form [formGroup]="formPersonaje">
 
 
     <div>
@@ -47,8 +47,11 @@
     </div>
 
     <div class="botonera">
-      <p-button type="submit" [disabled]="formPersonaje.invalid">
-        Guardar personaje
+      <p-button type="submit" [disabled]="formPersonaje.invalid" id="crear" (click)="insertarPersonaje()">
+        Crear personaje
+      </p-button>
+      <p-button type="submit" [disabled]="formPersonaje.invalid" id="modificar" (click)="actualizarPersonaje()">
+        Modificar personaje
       </p-button>
     </div>
 

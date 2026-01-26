@@ -20,7 +20,6 @@ export class BuscarPersonaje implements OnInit{
   error = ''
 
   editar(item:any): void {
-    alert(`${item.id}: ${item.nombre}`)
     this.route.navigate(["/editar",item.id])
   }
 
