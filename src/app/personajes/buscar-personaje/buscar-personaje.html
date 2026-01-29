@@ -27,7 +27,12 @@
         <td>{{ personaje.raza }}</td>
         <td>{{ personaje.fechaNacimiento }}</td>
         <td>{{ personaje.nivelCorrupcion }}</td>
-        <td><p-button (click)="editar(personaje)">Editar</p-button></td>
+        <td>
+          <p-button (click)="editar(personaje)">Editar</p-button>
+          <app-popup-confirmar [hidden]="personaje.fechaBaja != null" [config]="paramsBajaFis"></app-popup-confirmar>
+          <app-popup-confirmar [hidden]="personaje.fechaBaja != null" [config]="paramsBajaLog"></app-popup-confirmar>
+          <app-popup-confirmar [hidden]="personaje.fechaBaja == null" [config]="paramsReactiv"></app-popup-confirmar>
+        </td>
       </tr>
     </ng-template>
   </p-table>
