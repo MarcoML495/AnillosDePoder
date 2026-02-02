@@ -28,10 +28,10 @@
         <td>{{ personaje.fechaNacimiento }}</td>
         <td>{{ personaje.nivelCorrupcion }}</td>
         <td>
-          <p-button (click)="editar(personaje)">Editar</p-button>
-          <app-popup-confirmar [hidden]="personaje.fechaBaja != null" [config]="paramsBajaFis"></app-popup-confirmar>
-          <app-popup-confirmar [hidden]="personaje.fechaBaja != null" [config]="paramsBajaLog"></app-popup-confirmar>
-          <app-popup-confirmar [hidden]="personaje.fechaBaja == null" [config]="paramsReactiv"></app-popup-confirmar>
+          <p-button (click)="editar(personaje)" [hidden]="personaje.fechaBaja != null">Editar</p-button>
+          <app-popup-baja-fisica [config]="paramsBajaFis" (click)="abrirModal()" [hidden]="personaje.fechaBaja != null" [personajes]="personajes" [pid]="personaje.id"></app-popup-baja-fisica>
+          <app-popup-baja-logica [config]="paramsBajaLog" [hidden]="personaje.fechaBaja != null" [pid]="personaje.id"></app-popup-baja-logica>
+          <app-popup-reactivar [config]="paramsReactiv" [hidden]="personaje.fechaBaja == null" [pid]="personaje.id"></app-popup-reactivar>
         </td>
       </tr>
     </ng-template>

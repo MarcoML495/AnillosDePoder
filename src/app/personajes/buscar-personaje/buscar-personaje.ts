@@ -5,30 +5,37 @@ import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { Router, RouterLink } from '@angular/router';
 import { PopupConfig } from '../../interfaces/popup-config';
-import { PopupConfirmar } from "../../modales/popup-confirmar/popup-confirmar";
+import { PopupBajaFisica } from '../../modales/popup-baja-fisica/popup-baja-fisica';
+import { PopupBajaLogica } from '../../modales/popup-baja-logica/popup-baja-logica';
+import { PopupReactivar } from '../../modales/popup-reactivar/popup-reactivar';
+import { ToastModule } from "primeng/toast";
+import { ConfirmPopupModule } from "primeng/confirmpopup";
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-buscar-personaje',
-  imports: [ButtonModule, CommonModule, TableModule, RouterLink, PopupConfirmar],
+  imports: [ButtonModule, CommonModule, TableModule, RouterLink, PopupBajaFisica, PopupBajaLogica, PopupReactivar, ToastModule, ConfirmPopupModule],
   templateUrl: './buscar-personaje.html',
   styleUrl: './buscar-personaje.css',
 })
 export class BuscarPersonaje implements OnInit{
 
+
+  @ViewChild(PopupBajaFisica) popup!: PopupBajaFisica;
   paramsBajaFis:PopupConfig = {
-      message:"¿Quieres eliminar a este personaje de la BD?",
+      message:"Se va a borrar de forma definitiva el registro. ¿Estás seguro que deseas borrarlo?",
       buttonName:"Baja fisica",
       severity:"danger"
     }
 
   paramsBajaLog:PopupConfig = {
-      message:"¿Quieres dar a este personaje de baja?",
+      message:"Se va a dar de baja el personaje ¿Estás seguro?",
       buttonName:"Baja logica",
       severity:"warn"
     }
 
   paramsReactiv:PopupConfig = {
-      message:"¿Quieres reactivar a este personaje?",
+      message:"¿Deseas reactivar el personaje?",
       buttonName:"Reactivar",
       severity:"info"
     }
@@ -55,4 +62,12 @@ export class BuscarPersonaje implements OnInit{
       complete: () => console.log('Observable emitted the complete notification')
     });
   }
+
+  abrirModal(){
+    console.log("DDDDDDD")
+    this.popup.confirm
+    //cargarPersonajes()
+    //this.cargarPersonajes()
+  }
+
 }

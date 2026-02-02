@@ -25,4 +25,16 @@ export class AnillosService {
   updateCharacter(id:string,nombre:string,raza:string,fechaNacimiento:string,nivelCorrupcion:number): Observable <any []> {
     return this.http.put<any []>(`${this.baseUrl}/actualizarPersonaje/${id}`,{"nombre": nombre, "raza": raza, "fechaNacimiento": fechaNacimiento, "nivelCorrupcion": nivelCorrupcion})
   }
+
+  deleteCharacter(id:string): Observable <any []> {
+    return this.http.delete<any []>(`${this.baseUrl}/bajaFisica/${id}`)
+  }
+
+  deactivateCharacter(id:string): Observable <any []> {
+    return this.http.put<any []>(`${this.baseUrl}/bajaLogica/${id}`,null)
+  }
+
+  reactivateCharacter(id:string): Observable <any []> {
+    return this.http.put<any []>(`${this.baseUrl}/reactivar/${id}`,null)
+  }
 }
