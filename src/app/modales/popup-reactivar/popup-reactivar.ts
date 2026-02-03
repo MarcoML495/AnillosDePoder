@@ -38,11 +38,25 @@ export class PopupReactivar {
         severity: 'primary'
       },
       accept: () => {
-        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+        this.error = ''
+        this.anilloService.reactivateCharacter(this.pid).subscribe({
+            next: data => { this.cdr.detectChanges(); },
+            error: err => {
+              this.error = err
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se puede borrar ese personaje porque es portador.', life: 3000 });
+            },
+            complete: () => {
+              console.log(this.error)
+              if (this.error == '') {
+                this.messageService.add({ severity: 'info', summary: 'Exito', detail: 'Se ha borrado al personaje', life: 3000 });
+                window.location.reload()
+              }
+            }
+        });
+        
       },
-      reject: () => {
-        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
-      }
+      reject: () => {}
     });
+    console.log("SSSSSS")
   }
 }

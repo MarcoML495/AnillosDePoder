@@ -29,7 +29,7 @@
         <td>{{ personaje.nivelCorrupcion }}</td>
         <td>
           <p-button (click)="editar(personaje)" [hidden]="personaje.fechaBaja != null">Editar</p-button>
-          <app-popup-baja-fisica [config]="paramsBajaFis" (click)="abrirModal()" [hidden]="personaje.fechaBaja != null" [personajes]="personajes" [pid]="personaje.id"></app-popup-baja-fisica>
+          <app-popup-baja-fisica [config]="paramsBajaFis" [hidden]="personaje.fechaBaja != null" [personajes]="personajes" [pid]="personaje.id"></app-popup-baja-fisica>
           <app-popup-baja-logica [config]="paramsBajaLog" [hidden]="personaje.fechaBaja != null" [pid]="personaje.id"></app-popup-baja-logica>
           <app-popup-reactivar [config]="paramsReactiv" [hidden]="personaje.fechaBaja == null" [pid]="personaje.id"></app-popup-reactivar>
         </td>

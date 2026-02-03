@@ -50,7 +50,7 @@ export class PopupBajaFisica {
               console.log(this.error)
               if (this.error == '') {
                 this.messageService.add({ severity: 'info', summary: 'Exito', detail: 'Se ha borrado al personaje', life: 3000 });
-                // window.location.reload()
+                window.location.reload()
               }
             }
         });
@@ -58,5 +58,6 @@ export class PopupBajaFisica {
       },
       reject: () => {}
     });
+    console.log("SSSSSS")
   }
 }

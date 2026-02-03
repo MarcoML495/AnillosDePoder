@@ -21,7 +21,7 @@ import { ViewChild } from '@angular/core';
 export class BuscarPersonaje implements OnInit{
 
 
-  @ViewChild(PopupBajaFisica) popup!: PopupBajaFisica;
+  // @ViewChild(PopupBajaFisica) popup!: PopupBajaFisica;
   paramsBajaFis:PopupConfig = {
       message:"Se va a borrar de forma definitiva el registro. ¿Estás seguro que deseas borrarlo?",
       buttonName:"Baja fisica",
@@ -63,11 +63,12 @@ export class BuscarPersonaje implements OnInit{
     });
   }
 
-  abrirModal(){
-    console.log("DDDDDDD")
-    this.popup.confirm
-    //cargarPersonajes()
-    //this.cargarPersonajes()
-  }
+  // abrirModal(){
+  //   console.log("DDDDDDD")
+  //   this.popup.confirm
+  //   //cargarPersonajes()
+  //   console.log("AAAAAAA")
+  //   this.cargarPersonajes()
+  // }
 
 }
