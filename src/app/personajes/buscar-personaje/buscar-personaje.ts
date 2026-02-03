@@ -24,19 +24,19 @@ export class BuscarPersonaje implements OnInit{
   // @ViewChild(PopupBajaFisica) popup!: PopupBajaFisica;
   paramsBajaFis:PopupConfig = {
       message:"Se va a borrar de forma definitiva el registro. ¿Estás seguro que deseas borrarlo?",
-      buttonName:"Baja fisica",
+      buttonName:"",
       severity:"danger"
     }
 
   paramsBajaLog:PopupConfig = {
       message:"Se va a dar de baja el personaje ¿Estás seguro?",
-      buttonName:"Baja logica",
+      buttonName:"",
       severity:"warn"
     }
 
   paramsReactiv:PopupConfig = {
       message:"¿Deseas reactivar el personaje?",
-      buttonName:"Reactivar",
+      buttonName:"",
       severity:"info"
     }
 

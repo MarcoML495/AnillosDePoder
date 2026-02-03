@@ -95,3 +95,7 @@ tbody {
 tr {
   border: green 5px solid;
 }
+
+.btn-image:hover {
+cursor: pointer;
+}
