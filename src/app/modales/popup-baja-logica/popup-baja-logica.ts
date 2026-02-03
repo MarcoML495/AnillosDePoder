@@ -43,12 +43,12 @@ export class PopupBajaLogica {
             next: data => { this.cdr.detectChanges(); },
             error: err => {
               this.error = err
-              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se puede borrar ese personaje porque es portador.', life: 3000 });
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al desactivar personaje', life: 3000 });
             },
             complete: () => {
               console.log(this.error)
               if (this.error == '') {
-                this.messageService.add({ severity: 'info', summary: 'Exito', detail: 'Se ha borrado al personaje', life: 3000 });
+                this.messageService.add({ severity: 'info', summary: 'Exito', detail: 'Se ha desactivado al personaje', life: 3000 });
                 window.location.reload()
               }
             }
