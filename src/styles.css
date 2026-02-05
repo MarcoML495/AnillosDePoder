@@ -98,4 +98,5 @@ tr {
 
 .btn-image:hover {
 cursor: pointer;
+display: inline;
 }

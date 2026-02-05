@@ -13,7 +13,11 @@ export class Padre {
   paramsModal:PopupConfig = {
     message:"Buenas tardes este es mi primer popup",
     buttonName:"Boton",
-    severity:"info"
+    severity:"info",
+    function: this.aceptar
   }
 
+  aceptar() {
+
+  }
 }

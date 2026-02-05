@@ -1,3 +1,4 @@
+<p-toast />
 <div class="barraBusqueda">
   <div class="acciones">
     <table>
@@ -11,13 +12,38 @@
 
 
 <div class="tablaPersonajes">
-  <p-table [value]="personajes" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table #dt1 [value]="personajes" [tableStyle]="{ 'min-width': '50rem' }" [rowHover]="true" [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true" [globalFilterFields]="['nombre']">
+    <ng-template #caption>
+      <input pInputText type="text" [value]="$any(dt1).filters['global']?.value"
+          (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Buscar por nombre" />
+    </ng-template>
     <ng-template #header>
       <tr>
-        <th>Nombre</th>
-        <th>Raza</th>
-        <th>Fecha de Nacimiento</th>
-        <th>Corrupcion</th>
+        <th pSortableColumn="nombre">
+          <div class="flex items-center gap-2">
+            Nombre
+            <p-sortIcon field="nombre" />
+          </div>
+        </th>
+        <th pSortableColumn="raza">
+          <div class="flex items-center gap-2">
+            Raza
+            <p-sortIcon field="raza" />
+          </div>
+        </th>
+        <th pSortableColumn="fechaNacimiento">
+          <div class="flex items-center gap-2">
+            Fecha de nacimiento
+            <p-sortIcon field="fechaNacimiento" />
+          </div>
+        </th>
+        <th pSortableColumn="nivelCorrupcion">
+          <div class="flex items-center gap-2">
+            Corrupcion
+            <p-sortIcon field="nivelCorrupcion" />
+          </div>
+        </th>
         <th>Acciones</th>
       </tr>
     </ng-template>
@@ -27,12 +53,19 @@
         <td>{{ personaje.raza }}</td>
         <td>{{ personaje.fechaNacimiento }}</td>
         <td>{{ personaje.nivelCorrupcion }}</td>
-        <td>
-          <p-button (click)="editar(personaje)" [hidden]="personaje.fechaBaja != null">Editar</p-button>
-          <app-popup-baja-fisica [config]="paramsBajaFis" [hidden]="personaje.fechaBaja != null" [personajes]="personajes" [pid]="personaje.id"></app-popup-baja-fisica>
-          <app-popup-baja-logica [config]="paramsBajaLog" [hidden]="personaje.fechaBaja != null" [pid]="personaje.id"></app-popup-baja-logica>
-          <app-popup-reactivar [config]="paramsReactiv" [hidden]="personaje.fechaBaja == null" [pid]="personaje.id"></app-popup-reactivar>
+        <td class="flex items-center gap-2 align-items-center">
+          <p-button (click)="editar(personaje)">Editar</p-button>
+          <app-popup-baja-fisica [config]="getParamsBajaFis(personaje.id)" [pid]="personaje.id"></app-popup-baja-fisica>
+          <app-popup-baja-logica [config]="getParamsBajaLog(personaje.id)" [hidden]="personaje.fechaBaja != null"
+            [pid]="personaje.id"></app-popup-baja-logica>
+          <app-popup-reactivar [config]="getParamsReactiv(personaje.id)" [hidden]="personaje.fechaBaja == null"
+            [pid]="personaje.id"></app-popup-reactivar>
         </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="5">No se encontraron personajes</td>
       </tr>
     </ng-template>
   </p-table>

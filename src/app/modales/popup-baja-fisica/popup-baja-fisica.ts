@@ -16,7 +16,6 @@ import { AnillosService } from '../../servicios/anillos-service';
 export class PopupBajaFisica {
 
   @Input() config!: PopupConfig
-  @Input() personajes!: any []
   @Input() pid!: string
   error = ''
 
@@ -39,21 +38,7 @@ export class PopupBajaFisica {
         severity: 'primary'
       },
       accept: () => {
-        this.error = ''
-        this.anilloService.deleteCharacter(this.pid).subscribe({
-            next: data => { this.cdr.detectChanges(); },
-            error: err => {
-              this.error = err
-              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se puede borrar ese personaje porque es portador.', life: 3000 });
-            },
-            complete: () => {
-              console.log(this.error)
-              if (this.error == '') {
-                this.messageService.add({ severity: 'info', summary: 'Exito', detail: 'Se ha borrado al personaje', life: 3000 });
-                window.location.reload()
-              }
-            }
-        });
+        this.config.function()
         
       },
       reject: () => {}

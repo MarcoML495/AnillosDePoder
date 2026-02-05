@@ -4,5 +4,6 @@ export interface PopupConfig {
     message: string,
     buttonName: string,
     severity: ButtonSeverity,
-    accept?: Function
+
+    function: () => void
 }

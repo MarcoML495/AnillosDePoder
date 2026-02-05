@@ -38,21 +38,7 @@ export class PopupBajaLogica {
         severity: 'primary'
       },
       accept: () => {
-        this.error = ''
-        this.anilloService.deactivateCharacter(this.pid).subscribe({
-            next: data => { this.cdr.detectChanges(); },
-            error: err => {
-              this.error = err
-              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al desactivar personaje', life: 3000 });
-            },
-            complete: () => {
-              console.log(this.error)
-              if (this.error == '') {
-                this.messageService.add({ severity: 'info', summary: 'Exito', detail: 'Se ha desactivado al personaje', life: 3000 });
-                window.location.reload()
-              }
-            }
-        });
+        this.config.function()
         
       },
       reject: () => {}

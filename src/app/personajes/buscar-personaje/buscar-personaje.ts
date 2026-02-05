@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { AnillosService } from '../../servicios/anillos-service';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
@@ -10,52 +10,68 @@ import { PopupBajaLogica } from '../../modales/popup-baja-logica/popup-baja-logi
 import { PopupReactivar } from '../../modales/popup-reactivar/popup-reactivar';
 import { ToastModule } from "primeng/toast";
 import { ConfirmPopupModule } from "primeng/confirmpopup";
-import { ViewChild } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-buscar-personaje',
-  imports: [ButtonModule, CommonModule, TableModule, RouterLink, PopupBajaFisica, PopupBajaLogica, PopupReactivar, ToastModule, ConfirmPopupModule],
+  imports: [ButtonModule, CommonModule, TableModule, RouterLink, PopupBajaFisica, PopupBajaLogica, PopupReactivar, ToastModule, ConfirmPopupModule,InputTextModule],
+  providers: [MessageService],
   templateUrl: './buscar-personaje.html',
   styleUrl: './buscar-personaje.css',
 })
-export class BuscarPersonaje implements OnInit{
+export class BuscarPersonaje implements OnInit {
 
-
-  // @ViewChild(PopupBajaFisica) popup!: PopupBajaFisica;
-  paramsBajaFis:PopupConfig = {
-      message:"Se va a borrar de forma definitiva el registro. ¿Estás seguro que deseas borrarlo?",
-      buttonName:"",
-      severity:"danger"
+  private messageService = inject(MessageService);
+  getParamsBajaFis(pid: string): PopupConfig {
+    return {
+      message: "Se va a borrar de forma definitiva el registro. ¿Estás seguro que deseas borrarlo?",
+      buttonName: "",
+      severity: "danger",
+      function: () => {
+        this.bajaFisica(pid)
+      }
     }
-
-  paramsBajaLog:PopupConfig = {
-      message:"Se va a dar de baja el personaje ¿Estás seguro?",
-      buttonName:"",
-      severity:"warn"
+  }
+  getParamsBajaLog(pid: string): PopupConfig {
+    return {
+      message: "Se va a dar de baja el personaje ¿Estás seguro?",
+      buttonName: "",
+      severity: "warn",
+      function: () => {
+        this.bajaLogica(pid)
+      }
     }
+  }
 
-  paramsReactiv:PopupConfig = {
-      message:"¿Deseas reactivar el personaje?",
-      buttonName:"",
-      severity:"info"
+  getParamsReactiv(pid: string): PopupConfig {
+    return {
+      message: "¿Deseas reactivar el personaje?",
+      buttonName: "",
+      severity: "info",
+      function: () => {
+        this.reactivar(pid)
+      }
     }
+  }
 
   protected readonly title = signal('anillosDePoder');
 
-  constructor(private anilloService: AnillosService, private cdr: ChangeDetectorRef, private route: Router) {}
+  constructor(private anilloService: AnillosService, private cdr: ChangeDetectorRef, private route: Router) { }
 
-  personajes : any [] = []
+  personajes: any[] = []
   error = ''
+  searchValue: string | undefined;
 
-  editar(item:any): void {
-    this.route.navigate(["/editar",item.id])
+  editar(item: any): void {
+    this.route.navigate(["/editar", item.id])
   }
 
   ngOnInit(): void {
     this.cargarPersonajes();
   }
 
-  cargarPersonajes () {
+  cargarPersonajes() {
     this.anilloService.getAllCharacters().subscribe({
       next: data => { this.personajes = data; this.cdr.detectChanges(); },
       error: err => this.error = err,
@@ -63,12 +79,60 @@ export class BuscarPersonaje implements OnInit{
     });
   }
 
-  // abrirModal(){
-  //   console.log("DDDDDDD")
-  //   this.popup.confirm
-  //   //cargarPersonajes()
-  //   console.log("AAAAAAA")
-  //   this.cargarPersonajes()
-  // }
+  bajaFisica(pid: string) {
+    this.error = ''
+    this.anilloService.deleteCharacter(pid).subscribe({
+      next: data => { this.cdr.detectChanges(); },
+      error: err => {
+        this.error = err
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se puede borrar ese personaje porque es portador.', life: 3000 });
+      },
+      complete: () => {
+        console.log(this.error)
+        if (this.error == '') {
+          this.messageService.add({ severity: 'info', summary: 'Exito', detail: 'Se ha borrado al personaje', life: 3000 });
+          // window.location.reload()
+          this.cargarPersonajes();
+        }
+      }
+    });
+  }
 
+  bajaLogica(pid: string) {
+    this.error = ''
+    this.anilloService.deactivateCharacter(pid).subscribe({
+      next: data => { this.cdr.detectChanges(); },
+      error: err => {
+        this.error = err
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al desactivar personaje', life: 3000 });
+      },
+      complete: () => {
+        console.log(this.error)
+        if (this.error == '') {
+          this.messageService.add({ severity: 'info', summary: 'Exito', detail: 'Se ha desactivado al personaje', life: 3000 });
+          // window.location.reload()
+          this.cargarPersonajes();
+        }
+      }
+    });
+  }
+
+  reactivar(pid: string) {
+    this.error = ''
+    this.anilloService.reactivateCharacter(pid).subscribe({
+      next: data => { this.cdr.detectChanges(); },
+      error: err => {
+        this.error = err
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al reactivar al personaje', life: 3000 });
+      },
+      complete: () => {
+        console.log(this.error)
+        if (this.error == '') {
+          this.messageService.add({ severity: 'info', summary: 'Exito', detail: 'Se ha reactivado al personaje', life: 3000 });
+          // window.location.reload()
+          this.cargarPersonajes();
+        }
+      }
+    });
+  }
 }
