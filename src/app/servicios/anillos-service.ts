@@ -37,4 +37,28 @@ export class AnillosService {
   reactivateCharacter(id:string): Observable <any []> {
     return this.http.put<any []>(`${this.baseUrl}/reactivar/${id}`,null)
   }
+
+  getQuestion(id:string): Observable <any []> {
+    return this.http.get<any []>(`${this.baseUrl}/obtenerPregunta/${id}`)
+  }
+
+  answerQuestion(id:string, res:number): Observable <any []> {
+    return this.http.get<any []>(`${this.baseUrl}/respuesta/${id}/?respuestaUsuario=${res}`)
+  }
+
+  startGame(): Observable <any []> {
+    return this.http.get<any []>(`${this.baseUrl}/empezarPartida/`)
+  }
+
+  getGame(id:string): Observable <any []> {
+    return this.http.get<any []>(`${this.baseUrl}/obtenerPartida/${id}`)
+  }
+
+  setCorrect(id:string): Observable <any []> {
+    return this.http.put<any []>(`${this.baseUrl}/correcta/${id}`,null)
+  }
+
+  finishGame(id:string): Observable <any []> {
+    return this.http.put<any []>(`${this.baseUrl}/derrota/${id}`,null)
+  }
 }

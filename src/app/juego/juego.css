@@ -1,0 +1,10 @@
+.inicio, .pregunta {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.botonera {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+}
