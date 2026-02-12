@@ -38,6 +38,10 @@ export class AnillosService {
     return this.http.put<any []>(`${this.baseUrl}/reactivar/${id}`,null)
   }
 
+  getPortadores(): Observable <any []> {
+    return this.http.get<any []>(`${this.baseUrl}/listaPortadores`)
+  }
+
   getQuestion(id:string): Observable <any []> {
     return this.http.get<any []>(`${this.baseUrl}/obtenerPregunta/${id}`)
   }

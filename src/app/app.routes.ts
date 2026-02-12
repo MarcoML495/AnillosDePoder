@@ -8,6 +8,8 @@ import { BuscarPersonaje } from './personajes/buscar-personaje/buscar-personaje'
 import { DetallePersonaje } from './personajes/detalle-personaje/detalle-personaje';
 import { Padre } from './modales/padre/padre';
 import { Juego } from './juego/juego';
+import { PortadoresComponent } from './portadores-component/portadores-component';
+import { Persistencia } from './persistencia/persistencia';
 
 export const routes: Routes = [
     { path: 'detalle', component: Detalle },
@@ -20,4 +22,6 @@ export const routes: Routes = [
     { path: 'crearpersonaje', component: DetallePersonaje },
     { path: 'padre', component: Padre },
     { path: 'juego', component: Juego },
+    { path: 'persistencia', component: Persistencia },
+    { path: 'portador', component: PortadoresComponent },
 ];

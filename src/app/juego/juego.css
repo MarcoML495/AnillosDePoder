@@ -6,5 +6,6 @@
 .botonera {
   display: grid;
   grid-template-columns: auto auto;
-  padding: 10px;
+  gap: 25px;
+  padding: 50px;
 }

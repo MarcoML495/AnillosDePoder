@@ -1,0 +1,56 @@
+<div class="tablaPersonajes">
+  <p-table #dt1 [value]="personajes" [tableStyle]="{ 'min-width': '50rem' }" [rowHover]="true" [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true" [globalFilterFields]="['nombre']">
+    <ng-template #header>
+      <tr>
+        <th pSortableColumn="personaje.nombre">
+          <div class="flex items-center gap-2">
+            Personaje
+            <p-sortIcon field="personaje.nombre" />
+          </div>
+        </th>
+        <th pSortableColumn="anillo.nombre">
+          <div class="flex items-center gap-2">
+            Anillo
+            <p-sortIcon field="anillo.nombre" />
+          </div>
+        </th>
+        <th pSortableColumn="fechaInicio">
+          <div class="flex items-center gap-2">
+            Fecha inicio
+            <p-sortIcon field="fechaInicio" />
+          </div>
+        </th>
+        <th pSortableColumn="fechaFin">
+          <div class="flex items-center gap-2">
+            Fecha fin
+            <p-sortIcon field="fechaFin" />
+          </div>
+        </th>
+        <th pSortableColumn="activo">
+          <div class="flex items-center gap-2">
+            Activo
+            <p-sortIcon field="activo" />
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-personaje>
+      <tr>
+        <td>{{ personaje.personaje.nombre }} ({{personaje.personaje.raza}})</td>
+        <td>{{ personaje.anillo.nombre }}</td>
+        <td>{{ personaje.fechaInicio }}</td>
+        <td>{{ personaje.fechaFin }}</td>
+        <td>
+            <span [hidden]="!personaje.activo" style="color: green; font-weight: bold;">SI</span>
+            <span [hidden]="personaje.activo" style="color: red; font-weight: bold;">NO</span>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="5">No se encontraron personajes</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

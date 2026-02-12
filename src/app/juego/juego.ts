@@ -31,4 +31,8 @@ export class Juego {
       complete: () => console.log('Observable emitted the complete notification')
     });
   }
+
+  responder (id:number) {
+    alert(id)
+  }
 }
