@@ -1,6 +1,10 @@
+<p-confirmpopup />
 <div class="inicio" [hidden]="status != 'inactive'">
     <h1>Encuentra el anillo</h1>
     <p>Demuestra tu conocimiento del señor de los anillos</p>
+    <p>Victorias: {{victorias}}</p>
+    <p>Derrotas: {{derrotas}}</p>
+    <p>Partidas totales: {{victorias+derrotas}}</p>
     <p-button id="empezar" (click)="empezar()">
         Empezar
     </p-button>
@@ -9,13 +13,13 @@
 <div class="pregunta" [hidden]="status == 'inactive'">
     <h1>{{preguntaActual.pregunta}}</h1>
     <div class="botonera">
-        <p-button id="1" [style]="{'width':'100%','font-size':'30px'}" severity="secondary"
-            (click)="responder(1)">{{preguntaActual.respuesta1}}</p-button>
-        <p-button id="2" [style]="{'width':'100%','font-size':'30px'}" severity="secondary"
-            (click)="responder(2)">{{preguntaActual.respuesta2}}</p-button>
-        <p-button id="3" [style]="{'width':'100%','font-size':'30px'}" severity="secondary"
-            (click)="responder(3)">{{preguntaActual.respuesta3}}</p-button>
-        <p-button id="4" [style]="{'width':'100%','font-size':'30px'}" severity="secondary"
-            (click)="responder(4)">{{preguntaActual.respuesta4}}</p-button>
+        <p-button #btn1 id="btn-1" [style]="{'width':'100%','font-size':'30px'}" severity="secondary"
+            (click)="responder($event,1)">{{preguntaActual.respuesta1}}</p-button>
+        <p-button #btn2 id="btn-2" [style]="{'width':'100%','font-size':'30px'}" severity="secondary"
+            (click)="responder($event,2)">{{preguntaActual.respuesta2}}</p-button>
+        <p-button #btn3 id="btn-3" [style]="{'width':'100%','font-size':'30px'}" severity="secondary"
+            (click)="responder($event,3)">{{preguntaActual.respuesta3}}</p-button>
+        <p-button #btn4 id="btn-4" [style]="{'width':'100%','font-size':'30px'}" severity="secondary"
+            (click)="responder($event,4)">{{preguntaActual.respuesta4}}</p-button>
     </div>
 </div>

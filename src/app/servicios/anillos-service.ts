@@ -59,10 +59,10 @@ export class AnillosService {
   }
 
   setCorrect(id:string): Observable <any []> {
-    return this.http.put<any []>(`${this.baseUrl}/correcta/${id}`,null)
+    return this.http.put<any []>(`${this.baseUrl}/correcta/${id}/`,null)
   }
 
   finishGame(id:string): Observable <any []> {
-    return this.http.put<any []>(`${this.baseUrl}/derrota/${id}`,null)
+    return this.http.put<any []>(`${this.baseUrl}/finalizar/${id}/`,null)
   }
 }
