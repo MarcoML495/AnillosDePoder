@@ -2,12 +2,13 @@ import { ChangeDetectorRef, Component, ElementRef, inject, signal, ViewChild } f
 import { ButtonModule } from 'primeng/button';
 import { AnillosService } from '../servicios/anillos-service';
 import { Router } from '@angular/router';
-import { ConfirmPopupModule } from "primeng/confirmpopup";
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-juego',
-  imports: [ButtonModule, ConfirmPopupModule],
+  imports: [ButtonModule, ConfirmDialogModule, ToastModule],
   providers: [ConfirmationService, MessageService],
   templateUrl: './juego.html',
   styleUrl: './juego.css',
@@ -63,10 +64,10 @@ export class Juego {
     });
   }
 
-  responder(event: Event, id: number) {
+  responder(event: Event, id: number, answer: string) {
     this.confirmationService.confirm({
       target: event.currentTarget as EventTarget,
-      message: "¿Es esta tu respuesta final?",
+      message: `¿Es "${answer}" tu respuesta final?`,
       rejectButtonProps: {
         label: 'No',
         severity: 'secondary',
@@ -90,13 +91,13 @@ export class Juego {
       error: err => this.error = err,
       complete: () => {
         if (answerdata.toString() == "true") {
-          alert("¡Has acertado!")
+          this.messageService.add({ severity: 'success', summary: 'Acierto', detail: 'Respuesta correcta', life: 3000 });
           this.anilloService.setCorrect(this.partida.id).subscribe({
             next: data => { this.partida = data; this.cdr.detectChanges(); },
             error: err => this.error = err,
             complete: () => {
               if (this.partida.numeroCorrectas >= 5) {
-                alert("¡Has demostrado exitosamente tu conocimiento del señor de los anillos!")
+                this.messageService.add({ severity: 'success', summary: 'Victoria', detail: 'Has obtenido 5 aciertos seguidos y has ganado', life: 3000 });
                 this.victorias++
                 localStorage.setItem("victorias",this.victorias.toString())
                 this.status = "inactive"
@@ -115,7 +116,7 @@ export class Juego {
             }
           });
         } else {
-          alert("Has fallado y has perdido la partida")
+          this.messageService.add({ severity: 'error', summary: 'Fallo', detail: 'Has fallado y perdido la partida', life: 3000 });
           this.derrotas++
           localStorage.setItem("derrotas",this.derrotas.toString())
           this.status = "inactive"
